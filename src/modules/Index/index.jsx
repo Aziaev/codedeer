@@ -21,6 +21,16 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 6,
   },
+  footerContent: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+      width: 900,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
   body: {
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 20,
@@ -37,6 +47,25 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 4,
   },
 });
+
+const footers = [
+  {
+    title: 'Company',
+    description: ['Team', 'History', 'Contact us', 'Locations'],
+  },
+  {
+    title: 'Features',
+    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+  },
+  {
+    title: 'Resources',
+    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+  },
+  {
+    title: 'Legal',
+    description: ['Privacy policy', 'Terms of use'],
+  },
+];
 
 class Index extends React.Component {
   state = {
@@ -73,7 +102,7 @@ class Index extends React.Component {
         {/* Hero unit */}
         <div className={classes.heroUnit}>
           <div className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h1" align="center" color="textPrimary" gutterBottom>
               Codedeer
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
@@ -126,6 +155,22 @@ class Index extends React.Component {
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
             Something here to give the footer a purpose!
           </Typography>
+          <div className={classes.footerContent}>
+            <Grid container spacing={32} justify="space-evenly">
+              {footers.map(footer => (
+                <Grid item xs key={footer.title}>
+                  <Typography variant="h6" color="textPrimary" gutterBottom>
+                    {footer.title}
+                  </Typography>
+                  {footer.description.map(item => (
+                    <Typography key={item} variant="subtitle1" color="textSecondary">
+                      {item}
+                    </Typography>
+                  ))}
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </footer>
       </React.Fragment>
     );
